@@ -28,4 +28,6 @@ const calculateExercise = (dailyExercises: Array<number>, dailyTarget: number): 
   }
 }
 
-console.log(calculateExercise([1,2,1.5,2,1,3,2],2))
+const target: number = Number(process.argv[2])
+const exercises: Array<number> = process.argv.slice(3).map(arg => Number(arg))
+console.log(calculateExercise(exercises,target))

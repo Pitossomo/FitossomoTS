@@ -15,5 +15,8 @@
     "FSOpen"
   ],
   "author": "Pitossomo",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.27"
+  }
 }
