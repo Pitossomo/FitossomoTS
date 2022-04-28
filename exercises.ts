@@ -8,11 +8,11 @@ interface Exercises {
   description: string
 }
 
-const ratingDescription = (rating: number) => {
+export const ratingDescription = (rating: number) => {
   if (rating > 2) ""
 }
 
-const calculateExercise = (dailyExercises: Array<number>, dailyTarget: number): Exercises => {
+export const calculateExercise = (dailyExercises: Array<number>, dailyTarget: number): Exercises => {
   const averageTraining = dailyExercises.reduce((sum, h) => sum + h, 0) / dailyExercises.length
   const rating = 2 * Math.min(averageTraining, dailyTarget) / dailyTarget + 1
   const shortDescription = rating > 2 ? "GOOD" : "NOT ENOUGH"
@@ -33,7 +33,7 @@ interface ExerciseValues {
   exercises: Array<number>
 }
 
-const parseExerciseArgs = (args: Array<string>): ExerciseValues => {
+export const parseExerciseArgs = (args: Array<string>): ExerciseValues => {
   if (args.length < 4) throw new Error('Not enough arguments');
   
   const target: number = Number(process.argv[2])
@@ -47,21 +47,4 @@ const parseExerciseArgs = (args: Array<string>): ExerciseValues => {
       exercises
     }
   }
-}
-
-try {
-
-  const { target, exercises } = parseExerciseArgs(process.argv)
-
-  console.log(calculateExercise(exercises, target))
-
-} catch (error: unknown) {
-
-  let errorMessage = 'Something bad happened.'
-
-  if (error instanceof Error) {
-    errorMessage += ' Error ' + error.message;
-  }
-
-  console.log(errorMessage)
 }

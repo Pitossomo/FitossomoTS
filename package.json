@@ -8,8 +8,8 @@
     "ts-node": "ts-node",
     "start": "ts-node index.ts",
     "dev": "ts-node-dev index.ts",
-    "calculateBMI": "ts-node -- bmiCalculator.ts",
-    "calculateExercise": "ts-node -- exerciseCalculator.ts"
+    "calculateBMI": "ts-node -- ./CLI/bmiCalculator.ts",
+    "calculateExercise": "ts-node -- ./CLI/exerciseCalculator.ts"
   },
   "keywords": [
     "typescript",
