@@ -1,5 +1,14 @@
-### Http GET request Ex. 9.4
+### Http GET request to hello endpoint Ex. 9.4
 GET http://localhost:3003/hello HTTP/1.1
 
-###
-GET http://localhost:3003/bmi?height=163&weight=76  HTTP/1.1
+### HTTP GET request to BMI endpoint Ex. 9.5
+GET http://localhost:3003/bmi?height=163&weight=7a6  HTTP/1.1
+
+### HTTP POST request to exercise endpoint Ex 9.7
+POST http://localhost:3003/exercises HTTP/1.1
+Content-Type: application/json
+
+{
+  "exercises": [1, 0, 2, 0, 3, 0, 2.5],
+  "target": 2.5
+}
