@@ -1,4 +1,4 @@
-import { calculateExercise, parseCLIArgs } from "../exercises";
+import { calculateExercise, parseCLIArgs } from "../exercises"
 
 try {
 
@@ -11,7 +11,7 @@ try {
   let errorMessage = 'Something bad happened.'
 
   if (error instanceof Error) {
-    errorMessage += ' Error ' + error.message;
+    errorMessage += ' Error ' + error.message
   }
 
   console.log(errorMessage)

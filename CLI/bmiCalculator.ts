@@ -1,4 +1,4 @@
-import { calculateBMI, parseCLIArgs } from "../bmi";
+import { calculateBMI, parseCLIArgs } from "../bmi"
 
 try {
 
@@ -11,7 +11,7 @@ try {
   let errorMessage = 'Something bad happened.'
 
   if (error instanceof Error) {
-    errorMessage += ' Error ' + error.message;
+    errorMessage += ' Error ' + error.message
   }
 
   console.log(errorMessage)

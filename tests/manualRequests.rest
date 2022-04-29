@@ -3,4 +3,3 @@ GET http://localhost:3003/hello HTTP/1.1
 
 ###
 GET http://localhost:3003/bmi?height=163&weight=76  HTTP/1.1
-

@@ -34,15 +34,15 @@ interface ExerciseValues {
 }
 
 export const parseCLIArgs = (args: Array<string>): ExerciseValues => {
-  if (args.length < 4) throw new Error('Not enough arguments');
-  
-  const target: number = Number(process.argv[2])
+  if (args.length < 4) throw new Error('Not enough arguments')
+
+  const target = Number(process.argv[2])
   const exercises: Array<number> = process.argv.slice(3).map(arg => Number(arg))
-   
+
   if (isNaN(target) || exercises.some(val => isNaN(val))) {
     throw new Error("Provided arguments were not numbers")
   } else {
-    return { 
+    return {
       target,
       exercises
     }
