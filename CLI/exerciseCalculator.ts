@@ -1,8 +1,8 @@
-import { calculateExercise, parseExerciseArgs } from "../exercises";
+import { calculateExercise, parseCLIArgs } from "../exercises";
 
 try {
 
-  const { target, exercises } = parseExerciseArgs(process.argv)
+  const { target, exercises } = parseCLIArgs(process.argv)
 
   console.log(calculateExercise(exercises, target))
 

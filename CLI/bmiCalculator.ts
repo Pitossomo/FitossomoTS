@@ -1,8 +1,8 @@
-import { calculateBMI, parseBMIArgs } from "../bmi";
+import { calculateBMI, parseCLIArgs } from "../bmi";
 
 try {
 
-  const { height, weight } = parseBMIArgs(process.argv)
+  const { height, weight } = parseCLIArgs(process.argv)
 
   console.log(calculateBMI(height, weight))
 

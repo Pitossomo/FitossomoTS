@@ -1,4 +1,5 @@
 import express from 'express'
+import { handleGETRequest } from './bmi'
 const app = express()
 
 app.get('/hello', (_req, res) => {
@@ -6,10 +7,8 @@ app.get('/hello', (_req, res) => {
 })
 
 app.get('/bmi', (req, res) => {
-  const heightArg = req.query.height
-  const widthArg = req.query.width
-
-  
+  const result = handleGETRequest(req.query)
+  res.json(result)
 })
 
 const PORT = 3003

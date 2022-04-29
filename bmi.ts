@@ -1,3 +1,5 @@
+import { ParsedQs } from "qs"
+
 export const calculateBMI = (height: number, weight: number): string => {
   const bmi = weight / Math.pow(height / 100, 2)
 
@@ -16,7 +18,7 @@ interface BMIValues {
   weight: number
 }
 
-export const parseBMIArgs = (args: Array<string>): BMIValues => {
+export const parseCLIArgs = (args: Array<string>): BMIValues => {
   if (args.length < 4) throw new Error('Not enough arguments');
   if (args.length > 4) throw new Error('Too many arguments');
 
@@ -32,5 +34,31 @@ export const parseBMIArgs = (args: Array<string>): BMIValues => {
   } else {
     throw new Error("Provided arguments were not numbers")
 
+  }
+}
+
+interface BMIResponse {
+  height: number,
+  weight: number,
+  category: string
+}
+
+interface ErrorMessage {
+  error: string
+}
+
+export const handleGETRequest = (query: ParsedQs):(BMIResponse | ErrorMessage) => {
+  try {
+    const height = Number(query.height)
+    const weight = Number(query.weight)
+    
+    if (isNaN(height) || isNaN(weight)) throw new Error('malformatted parameters')
+
+    const category:string = calculateBMI(height,weight)
+
+    return { height, weight, category }
+
+  } catch (error) {
+    return { error: error.message }
   }
 }

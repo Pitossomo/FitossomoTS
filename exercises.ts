@@ -33,7 +33,7 @@ interface ExerciseValues {
   exercises: Array<number>
 }
 
-export const parseExerciseArgs = (args: Array<string>): ExerciseValues => {
+export const parseCLIArgs = (args: Array<string>): ExerciseValues => {
   if (args.length < 4) throw new Error('Not enough arguments');
   
   const target: number = Number(process.argv[2])
