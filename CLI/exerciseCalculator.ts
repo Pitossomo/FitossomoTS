@@ -2,7 +2,8 @@ import { calculateExercise, parseCLIArgs } from "../exercises"
 
 try {
 
-  const { target, exercises } = parseCLIArgs(process.argv)
+  // assign properties to variables (daily_exercises assigned to variable exercises, used as an alias)
+  const { target, daily_exercises: exercises } = parseCLIArgs(process.argv)
 
   console.log(calculateExercise(exercises, target))
 

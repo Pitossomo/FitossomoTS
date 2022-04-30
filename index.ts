@@ -15,7 +15,7 @@ app.get('/bmi', (req, res) => {
 })
 
 app.post('/exercises', (req, res) => {
-  console.log(req.body)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const result = handleExercisesReq(req.body)
   res.json(result)
 })

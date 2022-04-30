@@ -1,14 +1,54 @@
 ### Http GET request to hello endpoint Ex. 9.4
+## Expect "Hello Fullstack!"
 GET http://localhost:3003/hello HTTP/1.1
 
 ### HTTP GET request to BMI endpoint Ex. 9.5
-GET http://localhost:3003/bmi?height=163&weight=7a6  HTTP/1.1
+## Expect {
+#  weight: 72,
+#  height: 180,
+#  bmi: "Normal (healthy weight)"
+# }
+GET http://localhost:3003/bmi?height=180&weight=72  HTTP/1.1
+
+
+### HTTP GET request to BMI endpoint Ex. 9.5
+## Expect { error: "malformatted parameters" }
+GET http://localhost:3003/bmi?height=1a80&weight=72  HTTP/1.1
 
 ### HTTP POST request to exercise endpoint Ex 9.7
+## Expect {
+#    "periodLength": 7,
+#    "trainingDays": 4,
+#    "success": false,
+#    "rating": 1,
+#    "ratingDescription": "bad",
+#    "target": 2.5,
+#    "average": 1.2142857142857142
+## }
+POST http://localhost:3003/exercises HTTP/1.1
+Content-Type: application/json
+
+{
+  "daily_exercises": [1, 0, 2, 0, 3, 0, 2.5],
+  "target": 2.5
+}
+
+### HTTP POST request to exercise endpoint Ex 9.7
+# Expect { error: "parameters missing" }
 POST http://localhost:3003/exercises HTTP/1.1
 Content-Type: application/json
 
 {
   "exercises": [1, 0, 2, 0, 3, 0, 2.5],
+  "target": 2.5
+}
+
+### HTTP POST request to exercise endpoint Ex 9.7
+# Expect { error: "malformatted parameters" }
+POST http://localhost:3003/exercises HTTP/1.1
+Content-Type: application/json
+
+{
+  "daily_exercises": [1, 0, 2, 0, 3, "0.1", 2.5],
   "target": 2.5
 }

@@ -26,7 +26,7 @@ export const calculateExercise = (dailyExercises: Array<number>, dailyTarget: nu
 
 interface ExerciseValues {
   target: number,
-  exercises: Array<number>
+  daily_exercises: Array<number>
 }
 
 export const parseCLIArgs = (args: Array<string>): ExerciseValues => {
@@ -40,14 +40,37 @@ export const parseCLIArgs = (args: Array<string>): ExerciseValues => {
   } else {
     return {
       target,
-      exercises
+      daily_exercises: exercises
     }
   }
 }
 
-export const handlePOSTRequest = (body: ExerciseValues): Exercises => {
-  const target = body.target
-  const exercises = body["exercises"] // TODO - Change to daily_exercises
+interface ErrorMessage {
+  error: string
+}
 
-  return calculateExercise(exercises, target)
+export const handlePOSTRequest = (body: ExerciseValues): Exercises | ErrorMessage => {
+  try {
+    if (!body.target || !body.daily_exercises) {
+      throw new Error("parameters missing")
+    }
+
+    const target = Number(body.target)
+    const exercises = body.daily_exercises
+
+    if (isNaN(target) || exercises.some(ex => typeof ex !== "number")) {
+      throw new Error("malformatted parameters")
+    }
+
+    return calculateExercise(exercises, target)
+
+  } catch (error: unknown) {
+    let errorMessage = ''
+
+    if (error instanceof Error) {
+      errorMessage += error.message
+    }
+
+    return { error: errorMessage }
+  }
 }
